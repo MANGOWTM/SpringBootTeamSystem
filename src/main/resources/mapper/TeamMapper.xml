@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace是对应接口的全类名-->
+<mapper namespace="com.wtmc.springbootteamsystem.mapper.TeamMapper">
+    <resultMap id="teamResultMap" type="Team">
+        <id property="teamId" column="team_id"></id>
+        <result property="teamName" column="team_name"></result>
+        <result property="teamContent" column="team_content"></result>
+    </resultMap>
+
+    <insert id="addTeam">
+        insert into team(team_name,team_content) values(#{teamName},#{teamContent});
+    </insert>
+
+
+    <select id="searchTeamByName" resultMap="teamResultMap">
+        select * from team where team_name = #{teamName};
+    </select>
+
+    <delete id="deleteByTeamId">
+        delete from team where team_id = #{teamId};
+    </delete>
+</mapper>

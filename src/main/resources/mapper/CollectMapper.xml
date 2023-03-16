@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace是对应接口的全类名-->
+<mapper namespace="com.wtmc.springbootteamsystem.mapper.CollectMapper">
+    <resultMap id="collectResultMap" type="Collect">
+        <id property="collectId" column="collect_id"></id>
+        <result property="collectUserId" column="collect_user_id"></result>
+        <result property="collectBlogId" column="collect_blog_id"></result>
+    </resultMap>
+    <insert id="collectBlog">
+        insert into collect(collect_user_id,collect_blog_id) values (#{collectUserId},#{collectBlogId});
+    </insert>
+    <select id="searchCollectBlog" resultMap="collectResultMap">
+        select * from collect where collect_user_id = #{userId};
+    </select>
+    <delete id="deleteCollectBlog">
+        delete from collect where collect_user_id = #{userId} and collect_blog_id = #{blogId};
+    </delete>
+</mapper>

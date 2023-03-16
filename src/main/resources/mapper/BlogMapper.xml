@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace是对应接口的全类名-->
+<mapper namespace="com.wtmc.springbootteamsystem.mapper.BlogMapper">
+    <resultMap id="blogResultMap" type="Blog">
+        <id property="blog_id" column="blogId"></id>
+        <result property="blog_user_id" column="blogUserId"></result>
+        <result property="blog_team_id" column="blogTeamId"></result>
+        <result property="blog_type" column="blogType"></result>
+        <result property="blog_create_date" column="blogCreateDate"></result>
+        <result property="blog_title" column="blogTitle"></result>
+        <result property="blog_content" column="blogContent"></result>
+        <result property="blog_read" column="blogRead"></result>
+        <result property="blog_like" column="blogLike"></result>
+        <result property="blog_collect" column="blogCollect"></result>
+    </resultMap>
+<!--添加博客-->
+    <insert id="addBlog">
+        insert into blog(blog_user_id,blog_type,blog_create_date,blog_title,blog_content)
+        values(#{blogUserId},#{blogType},#{blogCreateDate},#{blogTitle},#{blogContent});
+    </insert>
+<!--查询博客-->
+    <select id="searchBlog" resultMap="blogResultMap">
+        select * from blog where 1 = 1
+        <if test="teamId != -1">
+            and blog_team_id = #{teamId}
+        </if>
+        <if test="blogType != null">
+            and find_in_set(blogType,#{blog_type})
+        </if>
+        <if test="blogUserId != -1">
+            and blog_user_id = #{blogUserId}
+        </if>
+    </select>
+
+
+</mapper>

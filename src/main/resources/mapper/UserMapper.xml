@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace是对应接口的全类名-->
+<mapper namespace="com.wtmc.springbootteamsystem.mapper.UserMapper">
+    <resultMap id="userResultMap" type="User">
+        <id property="userId" column="user_id"></id>
+        <result property="userName" column="user_name"></result>
+        <result property="userPassword" column="user_password"></result>
+        <result property="userRealName" column="user_real_name"></result>
+        <result property="userPosition" column="user_position"></result>
+        <result property="userTeamId" column="user_team_id"></result>
+    </resultMap>
+    <insert id="Registe">
+       insert into user(user_name,user_password,
+                        user_real_name,user_position)
+                   values(#{userName},#{userPassword},
+                          #{userRealName},#{userPosition}
+                   );
+    </insert>
+
+
+    <select id="checkLogin" resultMap="userResultMap">
+        select * from user where user_name = #{userName} and user_password = #{userPassword};
+    </select>
+    <select id="searchByUserName" resultMap="userResultMap">
+        select * from user where user_name = #{userName};
+    </select>
+    <select id="searchByUserRealName" resultMap="userResultMap">
+        select * from user where user_real_name = #{userRealName};
+    </select>
+</mapper>

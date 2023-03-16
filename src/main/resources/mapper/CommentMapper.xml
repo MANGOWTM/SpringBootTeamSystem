@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace是对应接口的全类名-->
+<mapper namespace="com.wtmc.springbootteamsystem.mapper.CommentMapper">
+    <insert id="addComment">
+        insert into comment(comment_user_id,comment_blog_id,comment_content,comment_create_date)
+        values (#{commentUserId},#{commentBlogId},#{commentContent},#{commentCreateDate});
+    </insert>
+
+    <delete id="deleteComment">
+        delete from comment where comment_id = #{commentId};
+    </delete>
+</mapper>

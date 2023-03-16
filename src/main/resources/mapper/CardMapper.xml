@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace是对应接口的全类名-->
+<mapper namespace="com.wtmc.springbootteamsystem.mapper.CardMapper">
+    <resultMap id="cardResultMap" type="Card">
+        <id property="cardId" column="card_id"/>
+        <result property="cardUserId" column="card_user_id"/>
+        <result property="cardAttendanceTime" column="card_attendancetime"/>
+        <result property="cardTimeBegin" column="card_time_begin"/>
+        <result property="cardTimeEnd" column="card_time_end"/>
+        <result property="cardDuration" column="card_duration"/>
+    </resultMap>
+
+
+    <select id="checkPunchIn" resultMap="cardResultMap">
+        select * from card where card_user_id = #{cardUserId} and card_attendancetime = #{cardAttendanceTime}
+    </select>
+    <select id="searchCardByUserId" resultMap="cardResultMap">
+        select * from card where card_user_id = #{userId}
+        <if test="beginTime != null">
+            and card_attendancetime >= #{beginTime}
+        </if>
+        <if test="endTime != null">
+            and card_attendancetime <![CDATA[ <= ]]> #{endTime};
+        </if>
+    </select>
+    <select id="searchDurationByUserId" resultType="java.lang.Integer">
+        select card_duration from card where card_user_id = #{userId}
+        <if test="beginTime != null">
+            and card_attendancetime >= #{beginTime}
+        </if>
+        <if test="endTime != null">
+            and card_attendancetime <![CDATA[ <= ]]> #{endTime};
+        </if>
+    </select>
+
+    <insert id="punchIn">
+        insert into card(card_user_id,card_attendancetime,card_time_begin)
+        values (#{cardUserId},#{cardAttendanceTime},#{cardTimeBegin});
+    </insert>
+
+
+    <update id="punchOut">
+        UPDATE card SET card_time_end = #{cardTimeEnd},card_duration = #{cardDuration} where card_user_id = #{cardUserId};
+    </update>
+</mapper>
