@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--namespace是对应接口的全类名-->
 <mapper namespace="com.wtmc.springbootteamsystem.mapper.OjCommentMapper">
+    <resultMap id="ojCommentResultMap" type="OjComment">
+        <id property="oj_comment_id" column="ojCommentId"></id>
+        <result property="oj_comment_solve_id" column="ojCommentSolveId"></result>
+        <result property="oj_comment_user_id" column="ohCommentUserId"></result>
+        <result property="oj_comment_content" column="ojCommentContent"></result>
+        <result property="oj_comment_date" column="ojCommentDate"></result>
+    </resultMap>
     <insert id="addComment">
         insert into oj_comment(oj_comment_solve_id,oj_comment_user_id,oj_comment_content,oj_comment_date)
         values(#{ojCommentSolveId},{ohCommentUserId},#{ojCommentContent},#{ojCommentDate});
@@ -10,4 +17,8 @@
     <delete id="deleteComment">
         delete from oj_comment where oj_comment_id = #{ojCommentId};
     </delete>
+
+    <select id="searchOjComment" resultMap="ojCommentResultMap">
+        select * from oj_comment where oj_comment_solve_id = #{id}
+    </select>
 </mapper>

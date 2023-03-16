@@ -4,10 +4,7 @@ import com.wtmc.springbootteamsystem.entity.OjComment;
 import com.wtmc.springbootteamsystem.service.OjCommentService;
 import com.wtmc.springbootteamsystem.service.imp.OjCommentServiceImpl;
 import com.wtmc.springbootteamsystem.util.Result;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -27,5 +24,10 @@ public class OjCommentController {
     @DeleteMapping("/deleteOjComment")
     public Result deleteOjComment(@RequestBody OjComment comment) {
         return service.deleteOjComment(comment);
+    }
+
+    @GetMapping("/searchOjComment")
+    public Result searchOjComment(@RequestParam("ojSolveId") int id){
+        return service.searchOjComment(id);
     }
 }

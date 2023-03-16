@@ -11,4 +11,6 @@ public interface OjCommentService {
 
     //OJ解题评论删除(用户只能删除自己的评论内容)
     public Result deleteOjComment(OjComment comment);
+
+    public Result searchOjComment(int id);
 }

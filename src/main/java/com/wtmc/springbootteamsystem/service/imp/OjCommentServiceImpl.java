@@ -7,6 +7,7 @@ import com.wtmc.springbootteamsystem.util.DateUtil;
 import com.wtmc.springbootteamsystem.util.Result;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 public class OjCommentServiceImpl implements OjCommentService {
     @Resource
@@ -24,5 +25,11 @@ public class OjCommentServiceImpl implements OjCommentService {
     public Result deleteOjComment(OjComment comment) {
         dao.deleteComment(comment);
         return Result.ok("Oj评论删除成功",comment);
+    }
+
+    @Override
+    public Result searchOjComment(int id) {
+        List<OjComment> ojComments = dao.searchOjComment(id);
+        return Result.ok("查询评论成功",ojComments);
     }
 }
