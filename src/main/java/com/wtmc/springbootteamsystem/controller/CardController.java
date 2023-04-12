@@ -15,6 +15,10 @@ import java.sql.Date;
 public class CardController {
     @Resource
     private CardService service;
+    @GetMapping("/test")
+    public Result test() {
+        return Result.ok("test");
+    }
     //上班打卡
     @PostMapping("/punchIn")
     public Result punchIn(@RequestBody Card card, HttpServletRequest request) {

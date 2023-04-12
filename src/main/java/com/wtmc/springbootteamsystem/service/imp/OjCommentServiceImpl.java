@@ -5,10 +5,12 @@ import com.wtmc.springbootteamsystem.mapper.OjCommentMapper;
 import com.wtmc.springbootteamsystem.service.OjCommentService;
 import com.wtmc.springbootteamsystem.util.DateUtil;
 import com.wtmc.springbootteamsystem.util.Result;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
+@Service
 public class OjCommentServiceImpl implements OjCommentService {
     @Resource
     private OjCommentMapper dao;

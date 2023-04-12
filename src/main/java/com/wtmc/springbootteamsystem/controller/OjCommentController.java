@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-@RestController("/ojComment")
+@RestController
+@RequestMapping("/ojComment")
 public class OjCommentController {
     @Resource
     private OjCommentService service;

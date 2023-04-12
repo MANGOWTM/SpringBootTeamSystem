@@ -1,6 +1,26 @@
 server:
   port: 8080
 spring:
+# kafka消费者配置
+  kafka:
+    consumer:
+      bootstrap-servers: 192.168.1.184:9092,192.168.1.185:9092,192.168.1.186:9092
+      enable-auto-commit: false
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      max-poll-records: 50
+    producer:
+      retries: 3 # 设置大于 0 的值，则客户端会将发送失败的记录重新发送
+      batch-size: 16384
+      buffer-memory: 33554432
+      acks: all
+      bootstrap-servers: 192.168.1.184:9092,192.168.1.185:9092,192.168.1.186:9092
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    listener:
+      ack-mode: manual_immediate
+      type: batch #必须要是batch才支持消费者批量消费，默认是single
   application:
     name: SpringBootTeamSystem
   datasource:

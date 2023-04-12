@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-@RestController("/collect")
+@RestController
+@RequestMapping("/collect")
 public class CollectController {
     @Resource
     private CollectService service;

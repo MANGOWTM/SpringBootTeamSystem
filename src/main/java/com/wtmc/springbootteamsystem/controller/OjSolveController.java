@@ -4,12 +4,14 @@ import com.wtmc.springbootteamsystem.service.OjSolveService;
 import com.wtmc.springbootteamsystem.service.imp.OjSolveServiceImpl;
 import com.wtmc.springbootteamsystem.util.Result;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
-@RestController("/ojSolve")
+@RestController
+@RequestMapping("/ojSolve")
 public class OjSolveController {
     @Resource
     private OjSolveService service;

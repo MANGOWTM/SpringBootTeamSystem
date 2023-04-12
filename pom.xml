@@ -53,7 +53,40 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.2.0</version>
         </dependency>
-<!--        SpringBoot项目就要用mybatis-spring-boot-starter不能用mybatis-->
+<!--        Apache Commons Codec 工具包中的 Base64 编码/解码功能依赖-->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.15</version>
+        </dependency>
+
+        <!--        apache.common.io的依赖-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+
+<!--        kafka依赖-->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.78</version>
+        </dependency>
+
+
+        <!--        SpringBoot项目就要用mybatis-spring-boot-starter不能用mybatis-->
 <!--        <dependency>-->
 <!--            <groupId>org.mybatis</groupId>-->
 <!--            <artifactId>mybatis</artifactId>-->
