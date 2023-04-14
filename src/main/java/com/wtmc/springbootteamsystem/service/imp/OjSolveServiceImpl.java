@@ -1,6 +1,6 @@
 package com.wtmc.springbootteamsystem.service.imp;
 
-import com.wtmc.springbootteamsystem.entity.OjSolve;
+import com.wtmc.springbootteamsystem.entity.Vo.OjSolve;
 import com.wtmc.springbootteamsystem.mapper.OjSolveMapper;
 import com.wtmc.springbootteamsystem.service.OjSolveService;
 import com.wtmc.springbootteamsystem.util.Result;
@@ -18,5 +18,11 @@ public class OjSolveServiceImpl implements OjSolveService {
     public Result searchSolveCode(int id) {
         List<OjSolve> ojSolves = dao.searchSolveCode(id);
         return Result.ok("题解查询成功",ojSolves);
+    }
+
+    @Override
+    public Result addSolveCode(OjSolve ojSolve) {
+        dao.addSolveCode(ojSolve);
+        return Result.ok("题解添加成功",ojSolve);
     }
 }

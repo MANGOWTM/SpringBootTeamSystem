@@ -1,16 +1,23 @@
 package com.wtmc.springbootteamsystem.controller;
 
-import com.wtmc.springbootteamsystem.entity.OjComment;
-import com.wtmc.springbootteamsystem.entity.OjProblem;
-import com.wtmc.springbootteamsystem.entity.OjSubmit;
+import com.wtmc.springbootteamsystem.entity.Eo.OjProblemEo;
+import com.wtmc.springbootteamsystem.entity.Vo.OjProblem;
+import com.wtmc.springbootteamsystem.service.OjProblemService;
 import com.wtmc.springbootteamsystem.util.Result;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
+
+/**
+ * OJ题目接口
+ */
 @RestController
 @RequestMapping("/OjProblem")
 public class OjProblemController {
     //OJ出题(数据上传通过addTestData方法来上传)
+    @Resource
+    private OjProblemService service;
     @PostMapping("/addProblem")
     public Result addProblem(@RequestBody OjProblem ojProblem) {
         return Result.error("/addProblem未开发");
@@ -28,4 +35,7 @@ public class OjProblemController {
         return Result.error("/deleteProblem未开发");
     }
 
+    public Result searchProblem(@RequestBody OjProblemEo ojProblemEo){
+        return null;
+    }
 }

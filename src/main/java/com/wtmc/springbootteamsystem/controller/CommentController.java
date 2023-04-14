@@ -1,14 +1,16 @@
 package com.wtmc.springbootteamsystem.controller;
 
-import com.wtmc.springbootteamsystem.entity.Comment;
+import com.wtmc.springbootteamsystem.entity.Vo.Comment;
 import com.wtmc.springbootteamsystem.service.CommentService;
-import com.wtmc.springbootteamsystem.service.imp.CommentServiceImpl;
 import com.wtmc.springbootteamsystem.util.DateUtil;
 import com.wtmc.springbootteamsystem.util.Result;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+/**
+ * 博客评论接口
+ */
 @RestController
 @RequestMapping("/comment")
 public class CommentController {
@@ -22,7 +24,7 @@ public class CommentController {
         return service.addComment(comment);
     }
 
-    //删除某条博客评论
+    //删除某条博客评论(用户只能删除自己的评论内容)
     @DeleteMapping("/deleteComment")
     public Result deleteComment(@RequestParam("commentId") int commentId) {
         return service.deleteComment(commentId);

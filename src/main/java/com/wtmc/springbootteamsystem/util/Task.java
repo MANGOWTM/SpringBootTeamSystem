@@ -2,15 +2,10 @@ package com.wtmc.springbootteamsystem.util;
 
 
 
-import com.wtmc.springbootteamsystem.entity.Answer;
-import com.wtmc.springbootteamsystem.entity.OjSubmit;
-import com.wtmc.springbootteamsystem.entity.Question;
+import com.wtmc.springbootteamsystem.entity.Vo.Answer;
+import com.wtmc.springbootteamsystem.entity.Vo.OjSubmit;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
 
 /**
  * Task 运行的结果

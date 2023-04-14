@@ -1,4 +1,4 @@
-package com.wtmc.springbootteamsystem.entity;
+package com.wtmc.springbootteamsystem.entity.Vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

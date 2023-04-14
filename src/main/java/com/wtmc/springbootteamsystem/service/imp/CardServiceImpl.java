@@ -1,32 +1,34 @@
 package com.wtmc.springbootteamsystem.service.imp;
 
 
-import com.sun.xml.internal.messaging.saaj.soap.ver1_1.Detail1_1Impl;
-import com.wtmc.springbootteamsystem.entity.Card;
-import com.wtmc.springbootteamsystem.entity.User;
+import com.wtmc.springbootteamsystem.entity.Dto.CardDto;
+import com.wtmc.springbootteamsystem.entity.Eo.CardEo;
+import com.wtmc.springbootteamsystem.entity.Vo.Card;
+import com.wtmc.springbootteamsystem.entity.Vo.Team;
+import com.wtmc.springbootteamsystem.entity.Vo.User;
 import com.wtmc.springbootteamsystem.mapper.CardMapper;
+import com.wtmc.springbootteamsystem.mapper.TeamMapper;
 import com.wtmc.springbootteamsystem.mapper.UserMapper;
 import com.wtmc.springbootteamsystem.service.CardService;
 import com.wtmc.springbootteamsystem.util.DateUtil;
 import com.wtmc.springbootteamsystem.util.Result;
-import javafx.scene.input.DataFormat;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CardServiceImpl implements CardService {
     @Resource
-    private CardMapper dao;
+    private CardMapper cardDao;
     @Resource
     private UserMapper userDao;
+    @Resource
+    private TeamMapper teamDao;
 
     @Override
     public Result punchIn(HttpServletRequest request,Card card) {
@@ -41,11 +43,11 @@ public class CardServiceImpl implements CardService {
             e.printStackTrace();
         }
         //2.通过考勤日搜索上班打卡，如果为空，那么说明还没有上班打卡，那么获取打卡时间进行打卡
-        Card cardCheck = dao.checkPunchIn(sqlDate,card.getCardUserId());
+        Card cardCheck = cardDao.checkPunchIn(sqlDate,card.getCardUserId());
         if(cardCheck == null) {
             card.setCardAttendanceTime(sqlDate);
             card.setCardTimeBegin(DateUtil.getTimestamp());
-            dao.punchIn(card);
+            cardDao.punchIn(card);
             return Result.ok("打卡成功",card);
         }
         //3.如果已经上班打卡过了，返回fail
@@ -69,7 +71,7 @@ public class CardServiceImpl implements CardService {
             e.printStackTrace();
         }
         //2.如果通过考勤日搜索下班打卡，如果字段不为空，那么说明还没有下班打卡，那么获取打卡时间进行打卡
-        Card cardCheck = dao.checkPunchIn(sqlDate,card.getCardUserId());
+        Card cardCheck = cardDao.checkPunchIn(sqlDate,card.getCardUserId());
         System.out.println(cardCheck);
         //还没有上班打卡
         if(cardCheck==null) {
@@ -78,7 +80,7 @@ public class CardServiceImpl implements CardService {
         else if(cardCheck.getCardTimeEnd()==null) {
             card.setCardTimeEnd(DateUtil.getTimestamp());
             card.setCardDuration(DateUtil.getTimeDuration(cardCheck.getCardTimeBegin(),card.getCardTimeEnd()));
-            dao.punchOut(card);
+            cardDao.punchOut(card);
             return Result.ok("下班打个成功",card);
         }
         //3.如果已经下班打卡过了，返回fail
@@ -94,7 +96,7 @@ public class CardServiceImpl implements CardService {
         if(user!=null) {
             //1.获取card_user_id;
             int userId = user.getUserId();
-            List<Card> cards = dao.searchCardByUserId(userId, beginTime, endTime);
+            List<Card> cards = cardDao.searchCardByUserId(userId, beginTime, endTime);
             return Result.ok("查询成功",cards);
         }
         else {
@@ -109,8 +111,16 @@ public class CardServiceImpl implements CardService {
             //1.获取card_user_id;
             int userId = user.getUserId();
             System.out.println(userId+" "+beginTime+" "+endTime);
-            List<Integer> list = dao.searchDurationByUserId(userId, beginTime, endTime);
-            return Result.ok("查询成功",list);
+            List<CardEo> cardEoList = cardDao.searchDurationByUserId(userId, beginTime, endTime);
+
+            List<CardDto> cardDtoList = new ArrayList<>();
+
+            CardDto cardDto = new CardDto();
+            cardDto.setCardEOLists(cardEoList);
+            cardDto.setUserRealName(userRealName);
+
+            cardDtoList.add(cardDto);
+            return Result.ok("查询成功",cardDtoList);
         }
         else {
             return Result.error("用户不存在");
@@ -118,7 +128,20 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public Result searchDurationByTeamName(String TeamName, Date beginTime, Date endTime) {
-        return null;
+    public Result searchDurationByTeamName(String teamName, Date beginTime, Date endTime) {
+          //先查询整个团队的成员有哪些
+        Team team = teamDao.searchTeamByName(teamName);
+        int teamId = team.getTeamId();
+        List<User> users = userDao.searchByUserTeamId(teamId);
+        List<CardDto> cardDtoList = new ArrayList<>();
+        for (User user : users) {
+            List<CardEo> cardEoList = cardDao.searchDurationByUserId(user.getUserId(), beginTime, endTime);
+
+            CardDto cardDto = new CardDto();
+            cardDto.setCardEOLists(cardEoList);
+            cardDto.setUserRealName(user.getUserRealName());
+            cardDtoList.add(cardDto);
+        }
+        return Result.ok("查询成功",cardDtoList);
     }
 }

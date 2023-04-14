@@ -18,7 +18,9 @@
                    );
     </insert>
 
-
+    <select id="searchByUserTeamId" resultMap="userResultMap">
+        select * from user where userTeamId = #{teamId};
+    </select>
     <select id="checkLogin" resultMap="userResultMap">
         select * from user where user_name = #{userName} and user_password = #{userPassword};
     </select>

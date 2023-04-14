@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace是对应接口的全类名-->
+<mapper namespace="com.wtmc.springbootteamsystem.mapper.OjProblemMapper">
+    <resultMap id="ojProblemResultMap" type="ojProblem">
+        <id property="ojProblemId" column="oj_problem_id"></id>
+        <result property="ojProlemTitle" column="oj_problem_title"></result>
+        <result property="ojProblemLevel" column="oj_problem_level"></result>
+        <result property="ojProblemType" column="oj_problem_type"></result>
+        <result property="ojProblemDescription" column="oj_problem_description"></result>
+        <result property="ojProblemTemplateCode" column="oj_problem_templateCode"></result>
+        <result property="ojProblemTestCode" column="oj_problem_testCode"></result>
+        <result property="ojProblemTeam" column="oj_problem_team"></result>
+    </resultMap>
+    <insert id="addProblem">
+        insert into oj_problem(oj_problem_title,oj_problem_level,oj_problem_type,oj_problem_description,
+                               oj_problem_templateCode,oj_problem_testCode,oj_problem_team)
+                    values(#{ojProlemTitle},#{ojProblemLevel},#{ojProblemType},#{ojProblemDescription},#{ojProblemTemplateCode}
+                    ,#{ojProblemTestCode},#{ojProblemTeam});
+    </insert>
+    <delete id="deleteProblem">
+        delete * from oj_problem where oj_problem_id = #{id};
+    </delete>
+    <select id="searchProblem" resultMap="ojProblemResultMap">
+        select * from oj_problem where 1=1
+        <if test="ojProlemTitle !=null and ojProlemTitle != ''">
+            and oj_problem_title = #{ojProlemTitle}
+        </if>
+        <if test="ojProblemLevel !=null and ojProblemLevel != ''">
+            and oj_problem_level = #{ojProblemLevel}
+        </if>
+        <if test="ojProblemType !=null and ojProblemType != ''">
+            and oj_problem_type = #{ojProblemType}
+        </if>
+    </select>
+</mapper>

@@ -1,6 +1,6 @@
 package com.wtmc.springbootteamsystem.service.imp;
 
-import com.wtmc.springbootteamsystem.entity.Team;
+import com.wtmc.springbootteamsystem.entity.Vo.Team;
 import com.wtmc.springbootteamsystem.mapper.TeamMapper;
 import com.wtmc.springbootteamsystem.service.TeamService;
 import com.wtmc.springbootteamsystem.util.Result;

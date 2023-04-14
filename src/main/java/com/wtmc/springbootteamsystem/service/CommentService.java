@@ -1,6 +1,6 @@
 package com.wtmc.springbootteamsystem.service;
 
-import com.wtmc.springbootteamsystem.entity.Comment;
+import com.wtmc.springbootteamsystem.entity.Vo.Comment;
 import com.wtmc.springbootteamsystem.util.Result;
 
 public interface CommentService {

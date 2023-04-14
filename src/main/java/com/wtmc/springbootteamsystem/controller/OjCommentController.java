@@ -1,13 +1,15 @@
 package com.wtmc.springbootteamsystem.controller;
 
-import com.wtmc.springbootteamsystem.entity.OjComment;
+import com.wtmc.springbootteamsystem.entity.Vo.OjComment;
 import com.wtmc.springbootteamsystem.service.OjCommentService;
-import com.wtmc.springbootteamsystem.service.imp.OjCommentServiceImpl;
 import com.wtmc.springbootteamsystem.util.Result;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+/**
+ * OJ解题评论接口
+ */
 @RestController
 @RequestMapping("/ojComment")
 public class OjCommentController {
@@ -27,8 +29,9 @@ public class OjCommentController {
         return service.deleteOjComment(comment);
     }
 
+    //查询一个OC题解的所有评论
     @GetMapping("/searchOjComment")
-    public Result searchOjComment(@RequestParam("ojSolveId") int id){
+    public Result searchOjComment(@RequestParam("ojCommentSolveId") int id){
         return service.searchOjComment(id);
     }
 }

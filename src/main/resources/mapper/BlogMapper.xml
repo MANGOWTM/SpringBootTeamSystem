@@ -3,16 +3,16 @@
 <!--namespace是对应接口的全类名-->
 <mapper namespace="com.wtmc.springbootteamsystem.mapper.BlogMapper">
     <resultMap id="blogResultMap" type="Blog">
-        <id property="blog_id" column="blogId"></id>
-        <result property="blog_user_id" column="blogUserId"></result>
-        <result property="blog_team_id" column="blogTeamId"></result>
-        <result property="blog_type" column="blogType"></result>
-        <result property="blog_create_date" column="blogCreateDate"></result>
-        <result property="blog_title" column="blogTitle"></result>
-        <result property="blog_content" column="blogContent"></result>
-        <result property="blog_read" column="blogRead"></result>
-        <result property="blog_like" column="blogLike"></result>
-        <result property="blog_collect" column="blogCollect"></result>
+        <id  property="blogId" column="blog_id"></id>
+        <result property="blogUserId" column="blog_user_id" ></result>
+        <result  property="blogTeamId" column="blog_team_id"></result>
+        <result  property="blogType" column="blog_type"></result>
+        <result property="blogCreateDate" column="blog_create_date" ></result>
+        <result  property="blogTitle" column="blog_title"></result>
+        <result  property="blogContent" column="blog_content"></result>
+        <result  property="blogRead" column="blog_read"></result>
+        <result  property="blogLike" column="blog_like"></result>
+        <result  property="blogCollect" column="blog_collect"></result>
     </resultMap>
 <!--添加博客-->
     <insert id="addBlog">
@@ -32,6 +32,9 @@
             and blog_user_id = #{blogUserId}
         </if>
     </select>
+    <delete id="deleteBlog">
+        select * from blog where blog_id = #{blogId};
+    </delete>
 
 
 </mapper>

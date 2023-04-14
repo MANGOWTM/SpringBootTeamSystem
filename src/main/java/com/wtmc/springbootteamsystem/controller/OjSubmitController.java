@@ -1,6 +1,6 @@
 package com.wtmc.springbootteamsystem.controller;
 
-import com.wtmc.springbootteamsystem.entity.OjSubmit;
+import com.wtmc.springbootteamsystem.entity.Vo.OjSubmit;
 import com.wtmc.springbootteamsystem.service.OjSubmitService;
 import com.wtmc.springbootteamsystem.util.Result;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
+/**
+ * OJ题目测试提交接口
+ */
 @RestController
 @RequestMapping("/ojSubmit")
 public class OjSubmitController {

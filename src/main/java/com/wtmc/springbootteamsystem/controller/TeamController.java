@@ -1,14 +1,15 @@
 package com.wtmc.springbootteamsystem.controller;
 
-import com.wtmc.springbootteamsystem.entity.Team;
+import com.wtmc.springbootteamsystem.entity.Vo.Team;
 import com.wtmc.springbootteamsystem.service.TeamService;
 import com.wtmc.springbootteamsystem.util.Result;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.time.temporal.Temporal;
 
+/**
+ * 团队接口
+ */
 @RestController
 @RequestMapping("/team")
 public class TeamController {

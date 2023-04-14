@@ -1,4 +1,4 @@
-package com.wtmc.springbootteamsystem.entity;
+package com.wtmc.springbootteamsystem.entity.Vo;
 /**
  * 这是包含了要编译的代码
  */

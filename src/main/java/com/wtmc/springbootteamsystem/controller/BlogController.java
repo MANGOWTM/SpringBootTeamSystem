@@ -1,14 +1,15 @@
 package com.wtmc.springbootteamsystem.controller;
 
-import com.wtmc.springbootteamsystem.entity.Blog;
-import com.wtmc.springbootteamsystem.entity.Collect;
-import com.wtmc.springbootteamsystem.entity.Comment;
+import com.wtmc.springbootteamsystem.entity.Vo.Blog;
 import com.wtmc.springbootteamsystem.service.BlogService;
 import com.wtmc.springbootteamsystem.util.Result;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+/**
+ * 博客接口
+ */
 @RestController
 @RequestMapping("/blog")
 public class BlogController {
@@ -28,5 +29,15 @@ public class BlogController {
         return service.searchBlog(teamName,blogType,userRealName);
     }
 
+    //删除博客文章
+    @DeleteMapping("/deleteBlog")
+    public Result deleteBlog(@RequestParam("blogId") int blogId){
+        return service.deleteBlog(blogId);
+    }
+
+    @PutMapping("/updateBlog")
+    public Result updateBlog(@RequestBody Blog blog){
+        return service.updateBlog(blog);
+    }
 
 }

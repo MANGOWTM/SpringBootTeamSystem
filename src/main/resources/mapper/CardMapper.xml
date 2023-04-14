@@ -10,6 +10,10 @@
         <result property="cardTimeEnd" column="card_time_end"/>
         <result property="cardDuration" column="card_duration"/>
     </resultMap>
+    <resultMap id="cardEoResultMap" type="CardEo">
+        <result property="cardAttendanceTime" column="card_attendancetime"/>
+        <result property="cardDuration" column="card_duration"/>
+    </resultMap>
 
 
     <select id="checkPunchIn" resultMap="cardResultMap">
@@ -24,8 +28,8 @@
             and card_attendancetime <![CDATA[ <= ]]> #{endTime};
         </if>
     </select>
-    <select id="searchDurationByUserId" resultType="java.lang.Integer">
-        select card_duration from card where card_user_id = #{userId}
+    <select id="searchDurationByUserId" resultType="CardEo">
+        select card_duration,card_attendancetime card where card_user_id = #{userId}
         <if test="beginTime != null">
             and card_attendancetime >= #{beginTime}
         </if>

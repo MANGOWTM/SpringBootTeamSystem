@@ -1,8 +1,7 @@
 package com.wtmc.springbootteamsystem.service;
 
-import com.wtmc.springbootteamsystem.entity.Card;
+import com.wtmc.springbootteamsystem.entity.Vo.Card;
 import com.wtmc.springbootteamsystem.util.Result;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;

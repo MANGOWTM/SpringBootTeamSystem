@@ -1,14 +1,15 @@
 package com.wtmc.springbootteamsystem.controller;
 
-import com.wtmc.springbootteamsystem.entity.User;
+import com.wtmc.springbootteamsystem.entity.Vo.User;
 import com.wtmc.springbootteamsystem.service.UserService;
 import com.wtmc.springbootteamsystem.util.Result;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+/**
+ * 用户接口
+ */
 @RestController//@Controller+@Response
 @RequestMapping("/user")
 public class UserController {

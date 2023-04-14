@@ -2,29 +2,16 @@ package com.wtmc.springbootteamsystem;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.wtmc.springbootteamsystem.entity.Answer;
 import com.wtmc.springbootteamsystem.util.AESUtils;
 import com.wtmc.springbootteamsystem.util.CommandUtil;
-import com.wtmc.springbootteamsystem.util.FileUtil;
-import com.wtmc.springbootteamsystem.util.Task;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.io.*;
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.List;
 
 @SpringBootTest
 class SpringBootTeamSystemApplicationTests {

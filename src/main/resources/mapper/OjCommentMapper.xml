@@ -3,11 +3,11 @@
 <!--namespace是对应接口的全类名-->
 <mapper namespace="com.wtmc.springbootteamsystem.mapper.OjCommentMapper">
     <resultMap id="ojCommentResultMap" type="OjComment">
-        <id property="oj_comment_id" column="ojCommentId"></id>
-        <result property="oj_comment_solve_id" column="ojCommentSolveId"></result>
-        <result property="oj_comment_user_id" column="ohCommentUserId"></result>
-        <result property="oj_comment_content" column="ojCommentContent"></result>
-        <result property="oj_comment_date" column="ojCommentDate"></result>
+        <id column="oj_comment_id" property="ojCommentId"></id>
+        <result column="oj_comment_solve_id" property="ojCommentSolveId"></result>
+        <result column="oj_comment_user_id" property="ohCommentUserId"></result>
+        <result column="oj_comment_content" property="ojCommentContent"></result>
+        <result column="oj_comment_date" property="ojCommentDate"></result>
     </resultMap>
     <insert id="addComment">
         insert into oj_comment(oj_comment_solve_id,oj_comment_user_id,oj_comment_content,oj_comment_date)

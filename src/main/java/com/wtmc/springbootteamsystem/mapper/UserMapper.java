@@ -1,7 +1,10 @@
 package com.wtmc.springbootteamsystem.mapper;
 
-import com.wtmc.springbootteamsystem.entity.User;
+import com.wtmc.springbootteamsystem.entity.Vo.User;
 import com.wtmc.springbootteamsystem.util.Result;
+
+import java.util.Date;
+import java.util.List;
 
 
 public interface UserMapper {
@@ -10,7 +13,6 @@ public interface UserMapper {
     //根据用户名查询用户
     public User searchByUserName(String userName);
     public User searchByUserRealName(String userRealName);
+    public List<User> searchByUserTeamId(int teamId);
     public User checkLogin(String userName,String userPassword);
-
-    public Result me();
 }

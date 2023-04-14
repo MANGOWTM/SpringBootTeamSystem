@@ -1,6 +1,6 @@
 package com.wtmc.springbootteamsystem.util;
 
-import com.wtmc.springbootteamsystem.entity.User;
+import com.wtmc.springbootteamsystem.entity.Vo.User;
 
 //保留用户状态(HTTP是无状态协议)
 public class UserHolder {

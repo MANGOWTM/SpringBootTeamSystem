@@ -1,8 +1,6 @@
 package com.wtmc.springbootteamsystem.mapper;
 
-import com.wtmc.springbootteamsystem.entity.Team;
-import com.wtmc.springbootteamsystem.util.Result;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.wtmc.springbootteamsystem.entity.Vo.Team;
 
 public interface TeamMapper {
     public void addTeam(Team team);

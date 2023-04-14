@@ -1,8 +1,8 @@
 package com.wtmc.springbootteamsystem.service.imp;
 
-import com.wtmc.springbootteamsystem.entity.Blog;
-import com.wtmc.springbootteamsystem.entity.Team;
-import com.wtmc.springbootteamsystem.entity.User;
+import com.wtmc.springbootteamsystem.entity.Vo.Blog;
+import com.wtmc.springbootteamsystem.entity.Vo.Team;
+import com.wtmc.springbootteamsystem.entity.Vo.User;
 import com.wtmc.springbootteamsystem.mapper.BlogMapper;
 import com.wtmc.springbootteamsystem.mapper.TeamMapper;
 import com.wtmc.springbootteamsystem.mapper.UserMapper;
@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 @Service
 public class BlogServiceImpl implements BlogService {
     @Resource
-    private BlogMapper dao;
+    private BlogMapper blogDao;
     @Resource
     private TeamMapper teamDao;
     @Resource
@@ -28,7 +28,7 @@ public class BlogServiceImpl implements BlogService {
         //获取当前系统时间作为博客发布时间
         Timestamp timestamp = DateUtil.getTimestamp();
         blog.setBlogCreateDate(timestamp);
-        dao.addBlog(blog);
+        blogDao.addBlog(blog);
         return Result.ok("博客添加成功",blog);
     }
 
@@ -45,7 +45,21 @@ public class BlogServiceImpl implements BlogService {
         if(user != null) {
             userId = user.getUserId();
         }
-        Blog blog = dao.searchBlog(teamId, blogType, userId);
+        Blog blog = blogDao.searchBlog(teamId, blogType, userId);
         return Result.ok("博客查询成功",blog);
+    }
+
+    @Override
+    public Result deleteBlog(int blogId) {
+        blogDao.deleteBlog(blogId);
+        return Result.ok("博客删除成功",blogId);
+    }
+
+    @Override
+    public Result updateBlog(Blog blog) {
+        int id = blog.getBlogId();
+        blogDao.deleteBlog(id);
+        blogDao.addBlog(blog);
+        return Result.ok("修改博客成功",blog);
     }
 }

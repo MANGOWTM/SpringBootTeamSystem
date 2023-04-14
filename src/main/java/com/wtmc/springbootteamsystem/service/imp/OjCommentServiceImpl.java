@@ -1,6 +1,6 @@
 package com.wtmc.springbootteamsystem.service.imp;
 
-import com.wtmc.springbootteamsystem.entity.OjComment;
+import com.wtmc.springbootteamsystem.entity.Vo.OjComment;
 import com.wtmc.springbootteamsystem.mapper.OjCommentMapper;
 import com.wtmc.springbootteamsystem.service.OjCommentService;
 import com.wtmc.springbootteamsystem.util.DateUtil;

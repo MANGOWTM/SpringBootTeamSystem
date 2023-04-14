@@ -1,11 +1,6 @@
 package com.wtmc.springbootteamsystem.mapper;
 
-import com.wtmc.springbootteamsystem.entity.Comment;
-import com.wtmc.springbootteamsystem.util.Result;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.wtmc.springbootteamsystem.entity.Vo.Comment;
 
 public interface CommentMapper {
     //给博客添加评论

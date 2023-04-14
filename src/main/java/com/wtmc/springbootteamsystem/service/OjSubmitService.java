@@ -1,6 +1,6 @@
 package com.wtmc.springbootteamsystem.service;
 
-import com.wtmc.springbootteamsystem.entity.OjSubmit;
+import com.wtmc.springbootteamsystem.entity.Vo.OjSubmit;
 import com.wtmc.springbootteamsystem.util.Result;
 
 

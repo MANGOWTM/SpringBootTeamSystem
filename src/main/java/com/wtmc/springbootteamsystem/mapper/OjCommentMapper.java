@@ -1,8 +1,6 @@
 package com.wtmc.springbootteamsystem.mapper;
 
-import com.wtmc.springbootteamsystem.entity.Comment;
-import com.wtmc.springbootteamsystem.entity.OjComment;
-import com.wtmc.springbootteamsystem.util.Result;
+import com.wtmc.springbootteamsystem.entity.Vo.OjComment;
 
 import java.util.List;
 

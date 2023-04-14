@@ -7,7 +7,7 @@
         <result property="collectUserId" column="collect_user_id"></result>
         <result property="collectBlogId" column="collect_blog_id"></result>
     </resultMap>
-    <insert id="collectBlog">
+    <insert id="addcollectBlog">
         insert into collect(collect_user_id,collect_blog_id) values (#{collectUserId},#{collectBlogId});
     </insert>
     <select id="searchCollectBlog" resultMap="collectResultMap">

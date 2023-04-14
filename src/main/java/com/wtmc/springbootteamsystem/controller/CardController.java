@@ -1,24 +1,22 @@
 package com.wtmc.springbootteamsystem.controller;
 
-import com.wtmc.springbootteamsystem.entity.Card;
+import com.wtmc.springbootteamsystem.entity.Vo.Card;
 import com.wtmc.springbootteamsystem.service.CardService;
 import com.wtmc.springbootteamsystem.util.Result;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 
+/**
+ * 打卡接口
+ */
 @RestController
 @RequestMapping("/card")
 public class CardController {
     @Resource
     private CardService service;
-    @GetMapping("/test")
-    public Result test() {
-        return Result.ok("test");
-    }
     //上班打卡
     @PostMapping("/punchIn")
     public Result punchIn(@RequestBody Card card, HttpServletRequest request) {
@@ -49,6 +47,6 @@ public class CardController {
     //根据团队名称，查询团队所有成员打卡时长(可根据日期进行范围打卡总时长查询)
     @GetMapping("/searchDurationByTeamName")
     public Result searchDurationByTeamName(@RequestParam("teamName") String teamName,@RequestParam("beginTime") Date  beginTime,@RequestParam("endTime") Date endTime) {
-        return Result.error("/searchDurationByTeamName未开发");
+        return service.searchDurationByTeamName(teamName,beginTime,endTime);
     }
 }

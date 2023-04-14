@@ -1,6 +1,6 @@
 package com.wtmc.springbootteamsystem.service.imp;
 
-import com.wtmc.springbootteamsystem.entity.Comment;
+import com.wtmc.springbootteamsystem.entity.Vo.Comment;
 import com.wtmc.springbootteamsystem.mapper.CommentMapper;
 import com.wtmc.springbootteamsystem.service.CommentService;
 import com.wtmc.springbootteamsystem.util.Result;
