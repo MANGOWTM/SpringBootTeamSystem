@@ -21,7 +21,7 @@ public class OjProblemServiceImpl implements OjProblemService {
     @Override
     public Result addProblem(OjProblem ojProblem) {
         dao.addProblem(ojProblem);
-        return null;
+        return Result.ok("题目添加成功",ojProblem);
     }
 
     //添加数据采用文件IO方式不走数据库，直接存到服务器文件上
@@ -33,7 +33,8 @@ public class OjProblemServiceImpl implements OjProblemService {
     @Override
     public Result deleteProblem(int id) {
         dao.deleteProblem(id);
-        return null;
+        return Result.ok("删除题目成功");
+
     }
 
     @Override

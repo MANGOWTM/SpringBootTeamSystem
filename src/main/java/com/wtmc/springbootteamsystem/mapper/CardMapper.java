@@ -4,7 +4,7 @@ package com.wtmc.springbootteamsystem.mapper;
 import com.wtmc.springbootteamsystem.entity.Eo.CardEo;
 import com.wtmc.springbootteamsystem.entity.Vo.Card;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 public interface CardMapper {

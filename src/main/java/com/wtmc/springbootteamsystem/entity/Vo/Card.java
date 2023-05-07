@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Timestamp;
 
 
@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 public class Card {
     private int cardId;
     private int cardUserId;
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date cardAttendanceTime;
     //Mysql中的datetime类型Java用Timestamp接收可能插入数据库会有问题(需要留意)
     @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")

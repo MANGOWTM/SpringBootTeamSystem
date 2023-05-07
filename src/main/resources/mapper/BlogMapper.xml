@@ -19,22 +19,28 @@
         insert into blog(blog_user_id,blog_type,blog_create_date,blog_title,blog_content)
         values(#{blogUserId},#{blogType},#{blogCreateDate},#{blogTitle},#{blogContent});
     </insert>
-<!--查询博客-->
+<!--筛选查询博客-->
+    <select id="SearchBlogById" resultMap="blogResultMap">
+        select * from blog where blog_id = #{blogId}
+    </select>
     <select id="searchBlog" resultMap="blogResultMap">
         select * from blog where 1 = 1
         <if test="teamId != -1">
             and blog_team_id = #{teamId}
         </if>
-        <if test="blogType != null">
-            and find_in_set(blogType,#{blog_type})
+        <if test="blogType != null and blogType!=''">
+            and find_in_set(blog_type,#{blogType})
         </if>
         <if test="blogUserId != -1">
             and blog_user_id = #{blogUserId}
         </if>
+        limit #{beginPos},#{pageSize};
+    </select>
+    <select id="selectCount" resultType="int">
+        select count(*) from blog;
     </select>
     <delete id="deleteBlog">
         select * from blog where blog_id = #{blogId};
     </delete>
-
 
 </mapper>

@@ -3,11 +3,12 @@ package com.wtmc.springbootteamsystem.controller;
 import com.wtmc.springbootteamsystem.entity.Vo.Card;
 import com.wtmc.springbootteamsystem.service.CardService;
 import com.wtmc.springbootteamsystem.util.Result;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * 打卡接口
@@ -29,8 +30,10 @@ public class CardController {
         return service.punchOut(card);
     }
 
-
-
+    @GetMapping("/searchCardByUserId")
+    public Result searchCardByUserId(Integer userId,@DateTimeFormat(pattern = "yyyy-MM-dd") Date beginTime,@DateTimeFormat(pattern = "yyyy-MM-dd") Date endTime) {
+        return service.searchCardByUserId(userId,beginTime,endTime);
+    }
     //根据用户真实姓名查询打卡记录，(支持日期范围查询)
     @GetMapping("/searchCardByUserRealName")
     public Result searchCardByUserRealName(@RequestParam("userRealName") String userRealName,@RequestParam("beginTime") Date beginTime,@RequestParam("endTime") Date endTime){

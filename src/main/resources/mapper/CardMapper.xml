@@ -45,6 +45,7 @@
 
 
     <update id="punchOut">
-        UPDATE card SET card_time_end = #{cardTimeEnd},card_duration = #{cardDuration} where card_user_id = #{cardUserId};
+        UPDATE card SET card_time_end = #{cardTimeEnd},card_duration = #{cardDuration} where card_user_id = #{cardUserId}
+        and card_attendancetime = #{cardAttendanceTime};
     </update>
 </mapper>

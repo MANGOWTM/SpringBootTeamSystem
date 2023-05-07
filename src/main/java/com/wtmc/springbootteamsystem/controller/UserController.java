@@ -1,5 +1,7 @@
 package com.wtmc.springbootteamsystem.controller;
 
+import cn.dev33.satoken.stp.StpUtil;
+import cn.dev33.satoken.util.SaResult;
 import com.wtmc.springbootteamsystem.entity.Vo.User;
 import com.wtmc.springbootteamsystem.service.UserService;
 import com.wtmc.springbootteamsystem.util.Result;
@@ -29,10 +31,22 @@ public class UserController {
         return service.Login(user);
     }
 
+    //查询用户登录状态，浏览器访问：http://localhost:8081/user/isLogin
+    @GetMapping("/isLogin")
+    public Result isLogin() {
+        return Result.ok("当前会话是否登录：" + StpUtil.isLogin());
+    }
+
     //保存用户登录状态
     @GetMapping("/me")
     public Result me() {
         return Result.error("/me此功能暂未实现");
+    }
+    //退出登录
+    @GetMapping("/logout")
+    public Result logout() {
+        StpUtil.logout();
+        return Result.ok("退出登录");
     }
 
 }

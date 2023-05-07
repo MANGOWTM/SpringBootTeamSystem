@@ -1,5 +1,6 @@
 package com.wtmc.springbootteamsystem;
 
+import cn.dev33.satoken.secure.SaSecureUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.wtmc.springbootteamsystem.util.AESUtils;
@@ -74,4 +75,8 @@ class SpringBootTeamSystemApplicationTests {
 //        aDL2IOiuknBNkiXP+MBOrg==
     }
 
+    @Test
+    void testSubmit() {
+        System.out.println(SaSecureUtil.md5("661015......"));
+    }
 }

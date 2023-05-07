@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.sql.Date;
+import java.util.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,9 +78,9 @@ public class CardServiceImpl implements CardService {
             return Result.error("今天还没进行上班打卡哟，无法下班打卡!");
         }
         else if(cardCheck.getCardTimeEnd()==null) {
-            card.setCardTimeEnd(DateUtil.getTimestamp());
-            card.setCardDuration(DateUtil.getTimeDuration(cardCheck.getCardTimeBegin(),card.getCardTimeEnd()));
-            cardDao.punchOut(card);
+            cardCheck.setCardTimeEnd(DateUtil.getTimestamp());
+            cardCheck.setCardDuration(DateUtil.getTimeDuration(cardCheck.getCardTimeBegin(),cardCheck.getCardTimeEnd()));
+            cardDao.punchOut(cardCheck);
             return Result.ok("下班打个成功",card);
         }
         //3.如果已经下班打卡过了，返回fail
@@ -143,5 +143,11 @@ public class CardServiceImpl implements CardService {
             cardDtoList.add(cardDto);
         }
         return Result.ok("查询成功",cardDtoList);
+    }
+
+    @Override
+    public Result searchCardByUserId(Integer userId, Date beginTime, Date endTime) {
+        List<Card> cards = cardDao.searchCardByUserId(userId, beginTime, endTime);
+        return Result.ok("查询成功",cards);
     }
 }
