@@ -5,6 +5,7 @@ import com.wtmc.springbootteamsystem.entity.Vo.OjProblem;
 import com.wtmc.springbootteamsystem.mapper.OjProblemMapper;
 import com.wtmc.springbootteamsystem.service.OjProblemService;
 import com.wtmc.springbootteamsystem.util.Result;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +22,14 @@ public class OjProblemServiceImpl implements OjProblemService {
     @Override
     public Result addProblem(OjProblem ojProblem) {
         dao.addProblem(ojProblem);
+        String ojProblemLevel = ojProblem.getOjProblemLevel();
+        int score = 10;
+        if(StringUtils.isNotEmpty(ojProblemLevel)) {
+            if(ojProblemLevel.equals("简单")) score = 10;
+            else if(ojProblemLevel.equals("一般")) score = 30;
+            else score = 50;
+        }
+        ojProblem.setOjProblemScore(score);
         return Result.ok("题目添加成功",ojProblem);
     }
 
@@ -41,5 +50,11 @@ public class OjProblemServiceImpl implements OjProblemService {
     public Result searchProblem(OjProblemEo ojProblemEo) {
         List<OjProblem> ojProblems = dao.searchProblem(ojProblemEo);
         return Result.ok("查询题目成功",ojProblems);
+    }
+
+    @Override
+    public Result searchProblemById(int ojProblemId) {
+        OjProblem ojProblem = dao.searchProblemById(ojProblemId);
+        return Result.ok("查询题目成功",ojProblem);
     }
 }

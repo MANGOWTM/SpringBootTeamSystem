@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
         }
         else{
             //会话登录，userId作为会话id
-            StpUtil.login(user.getUserId(),100000000);
+            StpUtil.login(user.getUserId(),50000000);
             //获取token，返回给前端
             SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
             return Result.ok("登录成功",checkUser,tokenInfo);

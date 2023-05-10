@@ -10,5 +10,5 @@ public class SearchBlogParam extends PageDto {
     private String blogId;
     private String teamName;
     private String blogType;
-    private String userRealName;
+    private Integer userId;
 }

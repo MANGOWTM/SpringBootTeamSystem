@@ -10,4 +10,5 @@ public interface OjProblemService {
     public Result addTestData(MultipartFile file);
     public Result deleteProblem(int id);
     public Result searchProblem(OjProblemEo ojProblemEo);
+    public Result searchProblemById(int ojProblemId);
 }

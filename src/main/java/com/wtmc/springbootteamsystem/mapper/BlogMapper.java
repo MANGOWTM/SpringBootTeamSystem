@@ -10,4 +10,5 @@ public interface BlogMapper {
     public Blog SearchBlogById(int blogId);
     public void deleteBlog(int blogId);
     public int selectCount();
+    public List<Blog> searchBlogByListId(List<Integer>ids,int beginPos, int pageSize);
 }

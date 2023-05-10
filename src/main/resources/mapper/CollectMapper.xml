@@ -10,10 +10,13 @@
     <insert id="addcollectBlog">
         insert into collect(collect_user_id,collect_blog_id) values (#{collectUserId},#{collectBlogId});
     </insert>
-    <select id="searchCollectBlog" resultMap="collectResultMap">
-        select * from collect where collect_user_id = #{userId};
+    <select id="searchCollectBlog" resultType="int">
+        select collect_blog_id from collect where collect_user_id = #{userId};
     </select>
     <delete id="deleteCollectBlog">
         delete from collect where collect_user_id = #{userId} and collect_blog_id = #{blogId};
     </delete>
+    <select id="searchCollectBlogId" resultType="int">
+        select collect_blog_id from collect where collect_user_id = #{userId};
+    </select>
 </mapper>

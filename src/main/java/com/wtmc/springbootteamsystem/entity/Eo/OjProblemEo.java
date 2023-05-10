@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class OjProblemEo {
-    private String ojProlemTitle;
-    private String ojProblemLevel;
     private String ojProblemType;
+    private String ojProblemLevel;
+    private String ojProblemTeam;
 }

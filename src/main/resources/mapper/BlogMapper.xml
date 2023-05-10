@@ -39,6 +39,13 @@
     <select id="selectCount" resultType="int">
         select count(*) from blog;
     </select>
+    <select id="searchBlogByListId" resultMap="blogResultMap">
+        select * from blog where blog_id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        limit #{beginPos},#{pageSize};
+    </select>
     <delete id="deleteBlog">
         select * from blog where blog_id = #{blogId};
     </delete>

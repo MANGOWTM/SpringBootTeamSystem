@@ -10,4 +10,5 @@ public interface OjProblemMapper {
     public void addProblem(OjProblem ojProblem);
     public void deleteProblem(int id);
     public List<OjProblem> searchProblem(OjProblemEo ojProblemEo);
+    public OjProblem searchProblemById(int ojProblemId);
 }

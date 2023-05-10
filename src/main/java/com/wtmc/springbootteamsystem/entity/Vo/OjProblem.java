@@ -9,11 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class OjProblem {
     private int ojProblemId;
-    private String ojProlemTitle;
+    private String ojProblemTitle;
     private String ojProblemLevel;
     private String ojProblemType;
     private String ojProblemDescription;
     private String ojProblemTemplateCode;
     private String ojProblemTestCode;
     private String ojProblemTeam;
+    private Integer ojProblemScore;
 }

@@ -44,11 +44,7 @@ public class BlogServiceImpl implements BlogService {
         if(team != null) {
             teamId = team.getTeamId();
         }
-        //2.根据userRealName查询出userId
-        User user = userDao.searchByUserRealName(param.getUserRealName());
-        if(user != null) {
-            userId = user.getUserId();
-        }
+        userId = param.getUserId();
         System.out.println(param.getCurrentPage());
         int currentPage = param.getCurrentPage();
         int pageSize = param.getPageSize();

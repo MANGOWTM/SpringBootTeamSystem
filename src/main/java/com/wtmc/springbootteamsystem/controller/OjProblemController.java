@@ -20,7 +20,7 @@ public class OjProblemController {
     private OjProblemService service;
     @PostMapping("/addProblem")
     public Result addProblem(@RequestBody OjProblem ojProblem) {
-        return Result.error("/addProblem未开发");
+        return service.addProblem(ojProblem);
     }
 
     @PostMapping("/addTestData")
@@ -35,7 +35,18 @@ public class OjProblemController {
         return Result.error("/deleteProblem未开发");
     }
 
-    public Result searchProblem(@RequestBody OjProblemEo ojProblemEo){
-        return null;
+    /**
+     * 根据题目难度，来源，类型字段筛选题目
+     * @param ojProblemEo
+     * @return
+     */
+    @GetMapping("/searchProblem")
+    public Result searchProblem(OjProblemEo ojProblemEo){
+        return service.searchProblem(ojProblemEo);
+    }
+
+    @GetMapping("/searchProblemById")
+    public Result searchProblemById(@RequestParam Integer ojProblemId) {
+        return service.searchProblemById(ojProblemId);
     }
 }

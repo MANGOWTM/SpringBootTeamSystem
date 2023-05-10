@@ -13,7 +13,6 @@ import javax.annotation.Resource;
  * 博客接口
  */
 @RestController
-@SaCheckLogin
 @RequestMapping("/blog")
 public class BlogController {
     @Resource
